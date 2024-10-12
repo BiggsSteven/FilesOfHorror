@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn2lljkijhvpv"]
+
+[ext_resource type="Texture2D" uid="uid://c1rlmu2n6hwlk" path="res://assets/sprites/Medieval wall.jpg" id="1_h8f2a"]
+[ext_resource type="PackedScene" uid="uid://b5jejcdvlpoqb" path="res://scenes/PaperDocument.tscn" id="2_4mtsg"]
+[ext_resource type="Texture2D" uid="uid://cwj18mmpwxfls" path="res://assets/sprites/Paper ref.png" id="2_wkow3"]
+[ext_resource type="Script" path="res://scenes/SpeedVisualizator.gd" id="4_px0pl"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(579, 324)
+scale = Vector2(0.720625, 0.607076)
+texture = ExtResource("1_h8f2a")
+
+[node name="PaperDocument" parent="CanvasLayer" instance=ExtResource("2_4mtsg")]
+position = Vector2(358, 333)
+
+[node name="PaperRef" type="Sprite2D" parent="CanvasLayer/PaperDocument"]
+scale = Vector2(4.48, 1.64)
+texture = ExtResource("2_wkow3")
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(857, 339)
+polygon = PackedVector2Array(0, 0, 100, 0, 100, 100, 0, 100)
+script = ExtResource("4_px0pl")
+
+[node name="PaperDocument2" parent="CanvasLayer" instance=ExtResource("2_4mtsg")]
+position = Vector2(714, 313)
+
+[node name="PaperRef" type="Sprite2D" parent="CanvasLayer/PaperDocument2"]
+scale = Vector2(4.48, 1.64)
+texture = ExtResource("2_wkow3")
