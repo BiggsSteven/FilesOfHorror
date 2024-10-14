@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyakq76wd30sk"]
+
+[ext_resource type="PackedScene" uid="uid://4101s4jkq1vd" path="res://scenes/Background.tscn" id="1_18vi5"]
+[ext_resource type="PackedScene" uid="uid://c5kytv1srns3a" path="res://scenes/MainFolder.tscn" id="2_6wl5c"]
+
+[node name="MainMenu" type="Node2D"]
+scale = Vector2(0.6, 0.6)
+
+[node name="Background" parent="." instance=ExtResource("1_18vi5")]
+modulate = Color(0.556863, 0.462745, 1, 1)
+
+[node name="MainFolder" parent="." instance=ExtResource("2_6wl5c")]
+z_index = 1
+position = Vector2(960, 540)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://4101s4jkq1vd"]
+
+[ext_resource type="Texture2D" uid="uid://b8jlsae2s0qxj" path="res://assets/sprites/Background.png" id="1_s7osk"]
+
+[node name="Background" type="Sprite2D"]
+process_priority = 1
+modulate = Color(0.227451, 1, 1, 1)
+position = Vector2(960, 540)
+texture = ExtResource("1_s7osk")

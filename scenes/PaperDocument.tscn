@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5jejcdvlpoqb"]
+[gd_scene load_steps=24 format=3 uid="uid://b5jejcdvlpoqb"]
 
 [ext_resource type="Script" path="res://scripts/PaperPhysics.gd" id="1_e244p"]
 [ext_resource type="Texture2D" uid="uid://cq0gt2hi0urab" path="res://assets/sprites/BlankPaper.png" id="2_wqi7m"]
+[ext_resource type="Texture2D" uid="uid://bt8ol03w364ed" path="res://assets/sprites/BackPaper.png" id="3_7hrbb"]
+[ext_resource type="Texture2D" uid="uid://ebojapi2fm11" path="res://assets/sprites/FrontPaper.png" id="4_m1f1x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kif03"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvfi7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sw31r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g84gp"]
 
@@ -15,31 +19,183 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rimi3"]
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o1wfl"]
+
+[sub_resource type="Animation" id="Animation_2ysmm"]
+length = 0.001
+step = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PaperBack:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PaperFront:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_x1u08"]
+resource_name = "flipping"
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.45, 0.55, 1)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PaperBack:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PaperFront:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.55, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_einlk"]
+_data = {
+"RESET": SubResource("Animation_2ysmm"),
+"flipping": SubResource("Animation_x1u08")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gwl3x"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a8o40"]
+animation = &"flipping"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ftpys"]
+animation = &"flipping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pj85s"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bnh28"]
+advance_mode = 2
+advance_condition = &"flip"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h1bwt"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"flip back"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o8oyr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kq5mv"]
+states/End/position = Vector2(874.667, 118.519)
+states/RESET/node = SubResource("AnimationNodeAnimation_gwl3x")
+states/RESET/position = Vector2(324, 118.691)
+states/Start/position = Vector2(197.333, 117.333)
+states/flipping/node = SubResource("AnimationNodeAnimation_ftpys")
+states/flipping/position = Vector2(496.889, 67.3333)
+"states/flipping back/node" = SubResource("AnimationNodeAnimation_a8o40")
+"states/flipping back/position" = Vector2(497.333, 179.333)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_pj85s"), "RESET", "flipping", SubResource("AnimationNodeStateMachineTransition_bnh28"), "flipping", "flipping back", SubResource("AnimationNodeStateMachineTransition_h1bwt"), "flipping back", "RESET", SubResource("AnimationNodeStateMachineTransition_o8oyr")]
+
 [node name="PaperDocument" type="Area2D"]
 script = ExtResource("1_e244p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-scale = Vector2(10, 14.1)
+scale = Vector2(20, 28.2)
 shape = SubResource("RectangleShape2D_kif03")
 
 [node name="Button" type="Button" parent="."]
-offset_left = -100.0
-offset_top = -141.0
-offset_right = 100.0
-offset_bottom = 141.0
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -282.0
+offset_right = 200.0
+offset_bottom = 282.0
+grow_horizontal = 2
+grow_vertical = 2
 localize_numeral_system = false
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kvfi7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_sw31r")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_g84gp")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8v5lu")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_avhpd")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rimi3")
+button_mask = 3
 shortcut_feedback = false
 shortcut_in_tooltip = false
 icon = ExtResource("2_wqi7m")
 
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationTree")
+libraries = {
+"": SubResource("AnimationLibrary_o1wfl")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_einlk")
+}
+tree_root = SubResource("AnimationNodeStateMachine_kq5mv")
+advance_expression_base_node = NodePath("../AnimationPlayer")
+parameters/conditions/flip = false
+"parameters/conditions/flip back" = false
+
+[node name="PaperBack" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_7hrbb")
+
+[node name="PaperFront" type="Sprite2D" parent="."]
+texture = ExtResource("4_m1f1x")
+
 [connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
