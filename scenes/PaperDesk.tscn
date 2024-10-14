@@ -1,12 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://dn2lljkijhvpv"]
+[gd_scene load_steps=5 format=3 uid="uid://dn2lljkijhvpv"]
 
 [ext_resource type="PackedScene" uid="uid://4101s4jkq1vd" path="res://scenes/Background.tscn" id="1_u8jly"]
-[ext_resource type="PackedScene" uid="uid://b5jejcdvlpoqb" path="res://scenes/PaperDocument.tscn" id="2_4mtsg"]
+[ext_resource type="PackedScene" uid="uid://b6qldsxwcjjph" path="res://scenes/Paper.tscn" id="3_dvm0i"]
+[ext_resource type="Texture2D" uid="uid://bt8ol03w364ed" path="res://assets/sprites/BackPaper.png" id="4_lmap3"]
+[ext_resource type="Texture2D" uid="uid://ebojapi2fm11" path="res://assets/sprites/FrontPaper.png" id="5_lfj2t"]
 
 [node name="Node2D" type="Node2D"]
 scale = Vector2(0.6, 0.6)
 
 [node name="Background" parent="." instance=ExtResource("1_u8jly")]
 
-[node name="PaperDocument" parent="." instance=ExtResource("2_4mtsg")]
-position = Vector2(1178.33, 563.333)
+[node name="Area2D" parent="." node_paths=PackedStringArray("Front", "Back") instance=ExtResource("3_dvm0i")]
+position = Vector2(836.667, 546.667)
+Front = NodePath("Sprite2D")
+Back = NodePath("Sprite2D2")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("4_lmap3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("5_lfj2t")
+
+[node name="Area2D2" parent="." node_paths=PackedStringArray("Front", "Back") instance=ExtResource("3_dvm0i")]
+position = Vector2(1510, 563.333)
+Front = NodePath("Sprite2D2")
+Back = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D2"]
+texture = ExtResource("4_lmap3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Area2D2"]
+texture = ExtResource("5_lfj2t")
+
+[node name="Area2D3" parent="." node_paths=PackedStringArray("Front", "Back") instance=ExtResource("3_dvm0i")]
+position = Vector2(358.333, 570)
+Front = NodePath("Sprite2D2")
+Back = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D3"]
+texture = ExtResource("4_lmap3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Area2D3"]
+texture = ExtResource("5_lfj2t")
