@@ -1,0 +1,169 @@
+[gd_scene load_steps=20 format=3 uid="uid://h0fepfx7wjl5"]
+
+[ext_resource type="Script" path="res://scripts/ButtonTag.gd" id="1_361n7"]
+[ext_resource type="Texture2D" uid="uid://bw8cy7g52fvvi" path="res://assets/sprites/MainButtonTag.png" id="1_gaj6r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4kkea"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nsxgr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5jsv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tunvc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1mccx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jdcmv"]
+
+[sub_resource type="Animation" id="Animation_soqon"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-8.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_v6uqv"]
+resource_name = "Show"
+length = 0.5
+step = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-8.5, -0.25, 0, 0.25, 0, -37.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_un03r"]
+_data = {
+"RESET": SubResource("Animation_soqon"),
+"Show": SubResource("Animation_v6uqv")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x5jcv"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5lxe6"]
+animation = &"Show"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k61dm"]
+animation = &"Show"
+play_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ub6iq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t8kwu"]
+advance_mode = 2
+advance_condition = &"Show"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xe4dg"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"UnShow"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mf6s1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5lce1"]
+states/RESET/node = SubResource("AnimationNodeAnimation_x5jcv")
+states/RESET/position = Vector2(362.667, 101.556)
+states/Show/node = SubResource("AnimationNodeAnimation_5lxe6")
+states/Show/position = Vector2(518.667, 50)
+"states/Un Show/node" = SubResource("AnimationNodeAnimation_k61dm")
+"states/Un Show/position" = Vector2(519.556, 147.333)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ub6iq"), "RESET", "Show", SubResource("AnimationNodeStateMachineTransition_t8kwu"), "Show", "Un Show", SubResource("AnimationNodeStateMachineTransition_xe4dg"), "Un Show", "RESET", SubResource("AnimationNodeStateMachineTransition_mf6s1")]
+
+[node name="ButtonTag" type="Node2D"]
+z_index = -1
+script = ExtResource("1_361n7")
+
+[node name="DetectExit" type="Area2D" parent="."]
+disable_mode = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectExit"]
+visible = false
+position = Vector2(0, -36)
+polygon = PackedVector2Array(-57, 34, 57, 34, 57, -18, 35, -40, -35, -40, -57, -18)
+
+[node name="DetectEntry" type="Area2D" parent="."]
+disable_mode = 2
+collision_layer = 2
+collision_priority = 2.0
+angular_damp_space_override = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectEntry"]
+visible = false
+position = Vector2(0, -8)
+polygon = PackedVector2Array(-55, 3, 55, 3, 55, -16, 33, -38, -33, -38, -55, -16)
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -55.0
+offset_top = -75.0
+offset_right = 55.0
+localize_numeral_system = false
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4kkea")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nsxgr")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_q5jsv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tunvc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1mccx")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jdcmv")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+icon = ExtResource("1_gaj6r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8.5)
+texture = ExtResource("1_gaj6r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_un03r")
+}
+tree_root = SubResource("AnimationNodeStateMachine_5lce1")
+advance_expression_base_node = NodePath("../AnimationPlayer")
+parameters/conditions/Show = false
+parameters/conditions/UnShow = false
+
+[connection signal="mouse_exited" from="DetectExit" to="." method="_on_detect_exit_mouse_exited"]
+[connection signal="mouse_entered" from="DetectEntry" to="." method="_on_detect_entry_mouse_entered"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
