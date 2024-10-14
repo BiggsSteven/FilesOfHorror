@@ -118,7 +118,7 @@ disable_mode = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectExit"]
 visible = false
 position = Vector2(0, -36)
-polygon = PackedVector2Array(-57, 39, 57, 39, 57, -18, 35, -40, -35, -40, -57, -18)
+polygon = PackedVector2Array(-57, 34, 57, 34, 57, -18, 35, -40, -35, -40, -57, -18)
 
 [node name="DetectEntry" type="Area2D" parent="."]
 disable_mode = 2
@@ -129,7 +129,7 @@ angular_damp_space_override = 3
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectEntry"]
 visible = false
 position = Vector2(0, -8)
-polygon = PackedVector2Array(-55, 8, 55, 8, 55, -16, 33, -38, -33, -38, -55, -16)
+polygon = PackedVector2Array(-55, 3, 55, 3, 55, -16, 33, -38, -33, -38, -55, -16)
 
 [node name="Button" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)

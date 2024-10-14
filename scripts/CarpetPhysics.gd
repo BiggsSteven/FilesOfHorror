@@ -58,4 +58,10 @@ func _on_main_carpet_button_down() -> void:
 		front = !front
 
 func _on_main_carpet_button_up() -> void:
+	var screenCenter = Vector2(960,540) * global_scale
+	var distanceToCenter = mainfolder.get_global_position().distance_to(screenCenter)
+	print(distanceToCenter)
+	if distanceToCenter < 50:
+		mainfolder.global_position = screenCenter
+		mainfolder.rotation = snappedf(rotation,2*PI/32)
 	active = false
