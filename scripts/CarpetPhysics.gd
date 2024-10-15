@@ -59,9 +59,11 @@ func _on_main_carpet_button_down() -> void:
 
 func _on_main_carpet_button_up() -> void:
 	var screenCenter = Vector2(960,540) * global_scale
+	var screen = Rect2(Vector2.ZERO,screenCenter*2)
 	var distanceToCenter = mainfolder.get_global_position().distance_to(screenCenter)
-	print(distanceToCenter)
-	if distanceToCenter < 50:
+	var checkInside = mainfolder.get_global_position() - screenCenter
+	checkInside = checkInside + screenCenter - sign(checkInside) * $Button.size.x*global_scale/2
+	if distanceToCenter < 50 || !screen.has_point(checkInside):
 		mainfolder.global_position = screenCenter
 		mainfolder.rotation = snappedf(rotation,2*PI/32)
 	active = false
