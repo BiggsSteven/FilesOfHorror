@@ -1,5 +1,7 @@
 extends Area2D
 
+@export var Front : Sprite2D
+@export var Back : Sprite2D
 @onready var paperdocument : Area2D = $"."
 @onready var animation_tree : AnimationTree = $AnimationTree
 
