@@ -180,6 +180,7 @@ parameters/conditions/flip = false
 
 [node name="FolderBack" type="Sprite2D" parent="."]
 visible = false
+scale = Vector2(-1, 1)
 texture = ExtResource("3_vs4pe")
 
 [node name="FolderFront" type="Sprite2D" parent="."]

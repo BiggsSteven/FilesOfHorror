@@ -10,13 +10,16 @@ extends Area2D
 @onready var DetectClicking : TextureButton = $TextureButton
 
 var active = false
+var flipping = false
+var front = true
+
+var screenCenter = Vector2(960,540) * global_scale
+var screen = Rect2(Vector2.ZERO,screenCenter*2)
 var mouse_paper = Vector2(0, 0)
 var paper_mouse_dir = Vector2(0, 0)
 var mouse_velocity = Vector2(0, 0)
 var rotation0 = 0.0
 var rotationMult = 0.0
-var flipping = false
-var front = true
 
 func _ready() -> void:
 	Front.position = Vector2(0,0)
@@ -70,8 +73,6 @@ func _on_texture_button_button_down() -> void:
 
 
 func _on_texture_button_button_up() -> void:
-	var screenCenter = Vector2(960,540) * global_scale
-	var screen = Rect2(Vector2.ZERO,screenCenter*2)
 	var distanceToCenter = Paper.get_global_position().distance_to(screenCenter)
 	var checkInside = Paper.get_global_position() - screenCenter
 	checkInside = checkInside + screenCenter - sign(checkInside) * DetectClicking.size.x*global_scale/2
