@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvxu4gh31vgp0"]
+
+[ext_resource type="Script" path="res://scripts/AlingmentDetection.gd" id="1_0uukv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rveqf"]
+radius = 5.0
+
+[node name="Area2D" type="Area2D"]
+light_mask = 0
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_0uukv")
+DetectOnFront = true
+Radius = 5.0
+AngleDetection = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rveqf")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

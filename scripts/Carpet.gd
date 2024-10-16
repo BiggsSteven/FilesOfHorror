@@ -20,8 +20,8 @@ func _process(_delta):
 	var to_rotate = acos(paper_mouse_dir.dot(new_paper_mouse_dir))*sign(paper_mouse_dir.cross(new_paper_mouse_dir))
 	if flipping:
 	# Activation of animation of getting flipped
-		animation_tree["parameters/conditions/flip"] = front
-		animation_tree["parameters/conditions/flip back"] = !front
+		animation_tree["parameters/conditions/Flip"] = front
+		animation_tree["parameters/conditions/Flip Back"] = !front
 		flipping = false
 	if active:	
 	# Generic dragging with mouse
@@ -32,20 +32,8 @@ func _process(_delta):
 		paper_mouse_dir = -mouse_paper
 		paper_mouse_dir = paper_mouse_dir.normalized()
 		rotation0 = mainfolder.rotation
-	# Generic dragging with mouse
-	#	mouse_paper = mouse_paper.rotated(to_rotate)
-	#	mainfolder.rotation = rot + to_rotate
-	#	mainfolder.global_position = mouse_position + mouse_paper
-	#	mouse_paper = mainfolder.get_global_position() - get_viewport().get_mouse_position()
-	#	paper_mouse_dir = -mouse_paper
-	#	paper_mouse_dir = paper_mouse_dir.normalized()
-	#	rot = mainfolder.rotation
-	# For pure rotation with mouse
-	#	mainfolder.rotation = rot+acos(paper_mouse_dir.dot(new_paper_mouse_dir))*sign(paper_mouse_dir.cross(new_paper_mouse_dir))
-	# For pure translation with mouse
-	#	mainfolder.global_position = mouse_position + mouse_paper
 
-func _on_main_carpet_button_down() -> void:
+func _on_button_button_down() -> void:
 	rotation0 = mainfolder.rotation
 	if Input.get_mouse_button_mask() == 1:
 		mouse_paper = mainfolder.get_global_position() - get_viewport().get_mouse_position()
@@ -59,7 +47,7 @@ func _on_main_carpet_button_down() -> void:
 		flipping = true
 		front = !front
 
-func _on_main_carpet_button_up() -> void:
+func _on_button_button_up() -> void:
 	var screen = get_viewport().get_visible_rect()
 	var screenCenter = screen.size / 2
 	if outside:
