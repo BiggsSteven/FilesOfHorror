@@ -398,7 +398,7 @@ states/RESET/position = Vector2(466.667, 116.667)
 states/Start/position = Vector2(197.333, 117.333)
 transitions = ["Start", "GameStart", SubResource("AnimationNodeStateMachineTransition_f272e"), "GameStart", "RESET", SubResource("AnimationNodeStateMachineTransition_7ndkh"), "RESET", "Flipping", SubResource("AnimationNodeStateMachineTransition_kvkov"), "Flipping", "Flipping Back", SubResource("AnimationNodeStateMachineTransition_48a02"), "Flipping Back", "RESET", SubResource("AnimationNodeStateMachineTransition_olikb"), "RESET", "GameEnd", SubResource("AnimationNodeStateMachineTransition_a7olq"), "GameEnd", "End", SubResource("AnimationNodeStateMachineTransition_fgdlr")]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_dfwcu")
 
 [node name="Button" type="Button" parent="."]

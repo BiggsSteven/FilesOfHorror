@@ -13,11 +13,18 @@ config_version=5
 config/name="Files of Horror"
 run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/image="res://assets/sprites/WidescreenCHJ3SplashScreen.png"
 config/icon="res://icon.svg"
 
 [autoload]
 
 GlobalScreenChanger="*res://scripts/Global_ScreenChanger.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
 
 [dotnet]
 
