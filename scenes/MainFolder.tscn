@@ -201,5 +201,10 @@ modulate = Color(1, 1, 0.494118, 1)
 position = Vector2(200, 155)
 rotation = 1.5708
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-200, -282, 400, 564)
+
 [connection signal="button_down" from="Button" to="." method="_on_main_carpet_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_main_carpet_button_up"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

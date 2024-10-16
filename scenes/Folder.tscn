@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bn2jbntvxuoos"]
+[gd_scene load_steps=31 format=3 uid="uid://cotmjl4g4mkd"]
 
 [ext_resource type="Texture2D" uid="uid://cq0gt2hi0urab" path="res://assets/sprites/BlankPaper.png" id="1_b5cks"]
 [ext_resource type="Script" path="res://scripts/Carpet.gd" id="1_dfwcu"]
@@ -457,5 +457,10 @@ offset = Vector2(200, 0)
 texture = ExtResource("5_o8bdr")
 offset = Vector2(-200, 0)
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-400, -282, 800, 564)
+
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

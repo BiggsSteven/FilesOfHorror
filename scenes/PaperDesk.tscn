@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dn2lljkijhvpv"]
 
 [ext_resource type="PackedScene" uid="uid://4101s4jkq1vd" path="res://scenes/Background.tscn" id="1_u8jly"]
-[ext_resource type="PackedScene" uid="uid://bn2jbntvxuoos" path="res://scenes/Folder.tscn" id="2_v1dyx"]
+[ext_resource type="PackedScene" uid="uid://cotmjl4g4mkd" path="res://scenes/Folder.tscn" id="2_v1dyx"]
 [ext_resource type="PackedScene" uid="uid://b6qldsxwcjjph" path="res://scenes/Paper.tscn" id="3_dvm0i"]
 [ext_resource type="Texture2D" uid="uid://bt8ol03w364ed" path="res://assets/sprites/BackPaper.png" id="4_lmap3"]
 [ext_resource type="Texture2D" uid="uid://ebojapi2fm11" path="res://assets/sprites/FrontPaper.png" id="5_lfj2t"]
-[ext_resource type="PackedScene" uid="uid://bt7203s5cg4cm" path="res://scenes/DetectAlignment.tscn" id="6_1xkkq"]
+[ext_resource type="PackedScene" uid="uid://bvxu4gh31vgp0" path="res://scenes/DetectAlignment.tscn" id="6_1xkkq"]
 
 [node name="Node2D" type="Node2D"]
 scale = Vector2(0.6, 0.6)

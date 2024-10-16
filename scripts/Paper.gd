@@ -7,14 +7,14 @@ extends Area2D
 @onready var Paper : Area2D = $"."
 @onready var Animation_Tree : AnimationTree = $AnimationTree
 @onready var AreaDetection : CollisionShape2D = $CollisionShape2D
+@onready var ScreenNotifier : VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var DetectClicking : TextureButton = $TextureButton
 
 var active = false
 var flipping = false
 var front = true
+var outside = false
 
-var screenCenter = Vector2(960,540) * global_scale
-var screen = Rect2(Vector2.ZERO,screenCenter*2)
 var mouse_paper = Vector2(0, 0)
 var paper_mouse_dir = Vector2(0, 0)
 var mouse_velocity = Vector2(0, 0)
@@ -22,13 +22,17 @@ var rotation0 = 0.0
 var rotationMult = 0.0
 
 func _ready() -> void:
-	Front.position = Vector2(0,0)
-	Back.position = Vector2(0,0)
-	var size : Vector2 = Front.get_rect().size * Front.scale
-	Back.scale = size / Back.get_rect().size
-	AreaDetection.scale = size / AreaDetection.shape.get_rect().size
-	DetectClicking.size = size
-	DetectClicking.position = -size/2
+	if Front != null && Back != null:
+		Front.position = Vector2(0,0)
+		Back.position = Vector2(0,0)
+		var size : Vector2 = Front.get_rect().size * Front.scale
+		Back.scale = size / Back.get_rect().size
+		AreaDetection.scale = size / AreaDetection.shape.get_rect().size
+		ScreenNotifier.rect = Front.get_rect()
+		DetectClicking.size = size
+		DetectClicking.position = -size/2
+	else:
+		queue_free()
 
 func _process(delta: float) -> void:
 	Front.visible = FrontVisible
@@ -73,13 +77,17 @@ func _on_texture_button_button_down() -> void:
 
 
 func _on_texture_button_button_up() -> void:
-	var distanceToCenter = Paper.get_global_position().distance_to(screenCenter)
-	var checkInside = Paper.get_global_position() - screenCenter
-	checkInside = checkInside + screenCenter - sign(checkInside) * DetectClicking.size.x*global_scale/2
-	if !screen.has_point(checkInside):
+	var screen = get_viewport().get_visible_rect()
+	var screenCenter = screen.size / 2
+	if outside:
 		Paper.global_position = screenCenter
 	active = false
 
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	outside = true
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	outside = false
 
 func _on_mouse_shape_entered(shape_idx: int) -> void:
 	# Tried to make paper move when mouse pass over them

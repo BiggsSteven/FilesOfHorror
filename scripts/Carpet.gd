@@ -6,9 +6,8 @@ extends Node2D
 var active = false
 var flipping = false
 var front = true
+var outside = false
 
-var screenCenter = Vector2(960,540) * global_scale
-var screen = Rect2(Vector2.ZERO,screenCenter*2)
 var mouse_paper = Vector2(0, 0)
 var paper_mouse_dir = Vector2(0, 0)
 var rotation0 = 0.0
@@ -49,10 +48,15 @@ func _on_button_button_down() -> void:
 		front = !front
 
 func _on_button_button_up() -> void:
-	var distanceToCenter = mainfolder.get_global_position().distance_to(screenCenter)
-	var checkInside = mainfolder.get_global_position() - screenCenter
-	checkInside = checkInside + screenCenter - sign(checkInside) * $Button.size.y*abs(global_scale)/2
-	if distanceToCenter < 50 || !screen.has_point(checkInside):
+	var screen = get_viewport().get_visible_rect()
+	var screenCenter = screen.size / 2
+	if outside:
 		mainfolder.global_position = screenCenter
 		mainfolder.rotation = snappedf(rotation,2*PI/32)
 	active = false
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	outside = true
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	outside = false

@@ -3,15 +3,15 @@ extends Node2D
 @onready var mainfolder : Node2D = $"."
 @onready var animation_tree : AnimationTree = $AnimationTree
 
-var screenCenter = Vector2(960,540) * global_scale
-var screen = Rect2(Vector2.ZERO,screenCenter*2)
 var active = false
+var flipping = false
+var front = true
+var outside = false
+
 var mouse_paper = Vector2(0, 0)
 var paper_mouse_dir = Vector2(0, 0)
 var rotation0 = 0.0
 var rotationMult = 0.0
-var flipping = false
-var front = true
 
 func _process(_delta):
 	var mouse_position = get_viewport().get_mouse_position()
@@ -60,10 +60,15 @@ func _on_main_carpet_button_down() -> void:
 		front = !front
 
 func _on_main_carpet_button_up() -> void:
-	var distanceToCenter = mainfolder.get_global_position().distance_to(screenCenter)
-	var checkInside = mainfolder.get_global_position() - screenCenter
-	checkInside = checkInside + screenCenter - sign(checkInside) * $Button.size.x*abs(global_scale)/2
-	if distanceToCenter < 50 || !screen.has_point(checkInside):
+	var screen = get_viewport().get_visible_rect()
+	var screenCenter = screen.size / 2
+	if outside:
 		mainfolder.global_position = screenCenter
 		mainfolder.rotation = snappedf(rotation,2*PI/32)
 	active = false
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	outside = true
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	outside = false
