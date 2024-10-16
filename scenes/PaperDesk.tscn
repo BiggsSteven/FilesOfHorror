@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn2lljkijhvpv"]
+[gd_scene load_steps=6 format=3 uid="uid://dn2lljkijhvpv"]
 
 [ext_resource type="PackedScene" uid="uid://4101s4jkq1vd" path="res://scenes/Background.tscn" id="1_u8jly"]
 [ext_resource type="PackedScene" uid="uid://b6qldsxwcjjph" path="res://scenes/Paper.tscn" id="3_dvm0i"]
 [ext_resource type="Texture2D" uid="uid://bt8ol03w364ed" path="res://assets/sprites/BackPaper.png" id="4_lmap3"]
 [ext_resource type="Texture2D" uid="uid://ebojapi2fm11" path="res://assets/sprites/FrontPaper.png" id="5_lfj2t"]
+[ext_resource type="PackedScene" uid="uid://ci75jdjnghgv5" path="res://scenes/BottomPanel.tscn" id="5_sn8wk"]
 
 [node name="Node2D" type="Node2D"]
 scale = Vector2(0.6, 0.6)
@@ -42,3 +43,6 @@ texture = ExtResource("4_lmap3")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Area2D3"]
 texture = ExtResource("5_lfj2t")
+
+[node name="BottomPanel" parent="." instance=ExtResource("5_sn8wk")]
+position = Vector2(1.66667, 998.333)
