@@ -9,6 +9,7 @@ extends Area2D
 var newPosition : Vector2
 var newRotation : float
 var activeSnapping = false
+var snapChannel = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,6 +23,7 @@ func _process(delta: float) -> void:
 	if !ParentNode["active"] && activeSnapping:
 		ParentNode.global_position = newPosition
 		ParentNode.global_rotation = newRotation
+		GlobalScreenChanger.callSnappingEvent(snapChannel)
 		activeSnapping = false
 
 
@@ -32,6 +34,7 @@ func _on_area_entered(area: Area2D) -> void:
 			var angleDif : float = - AreaNode.global_rotation + area.global_rotation
 			newPosition = area.global_position - posDif.rotated(angleDif)
 			newRotation = ParentNode.global_rotation + angleDif
+			snapChannel = AreaNode.collision_mask
 			activeSnapping = true
 
 
