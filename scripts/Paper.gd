@@ -1,14 +1,14 @@
 extends Area2D
 
-@export var Front : Sprite2D
-@export var FrontVisible : bool
-@export var Back : Sprite2D
-@export var BackVisible : bool
+@export var Front : Texture2D
+@export var Back : Texture2D
 @onready var Paper : Area2D = $"."
 @onready var Animation_Tree : AnimationTree = $AnimationTree
 @onready var AreaDetection : CollisionShape2D = $CollisionShape2D
 @onready var ScreenNotifier : VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var DetectClicking : TextureButton = $TextureButton
+@onready var FrontSprite : Sprite2D = $Front
+@onready var BackSprite : Sprite2D = $Back
 
 var active = false
 var flipping = false
@@ -23,20 +23,15 @@ var rotationMult = 0.0
 
 func _ready() -> void:
 	if Front != null && Back != null:
-		Front.position = Vector2(0,0)
-		Back.position = Vector2(0,0)
-		var size : Vector2 = Front.get_rect().size * Front.scale
-		Back.scale = size / Back.get_rect().size
-		AreaDetection.scale = size / AreaDetection.shape.get_rect().size
-		ScreenNotifier.rect = Front.get_rect()
-		DetectClicking.size = size
-		DetectClicking.position = -size/2
-	else:
-		queue_free()
+		var NewScale : Vector2 = Front.size / FrontSprite.texture.size
+		AreaDetection.scale = NewScale
+		ScreenNotifier.scale = NewScale
+		DetectClicking.scale = NewScale
+		FrontSprite.texture = Front
+		BackSprite.texture = Back
+		Back.scale = Front.size / Back.size
 
 func _process(delta: float) -> void:
-	Front.visible = FrontVisible
-	Back.visible = BackVisible
 	var mouse_position = get_viewport().get_mouse_position()
 	var new_paper_mouse = mouse_position - Paper.get_global_position()
 	var new_paper_mouse_dir = new_paper_mouse.normalized()
