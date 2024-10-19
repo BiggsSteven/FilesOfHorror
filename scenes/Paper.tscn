@@ -140,7 +140,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qyf2q"]
 states/Flipping/node = SubResource("AnimationNodeAnimation_v0y5i")
-states/Flipping/position = Vector2(472, 48.6667)
+states/Flipping/position = Vector2(471.457, 48.6667)
 "states/Flipping Back/node" = SubResource("AnimationNodeAnimation_81n07")
 "states/Flipping Back/position" = Vector2(471.556, 151.333)
 states/RESET/node = SubResource("AnimationNodeAnimation_7xmsb")
@@ -149,8 +149,6 @@ transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransitio
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_rd3t0")
-Front = ExtResource("2_07s57")
-Back = ExtResource("3_o3ska")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -199,3 +197,4 @@ texture = ExtResource("3_o3ska")
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

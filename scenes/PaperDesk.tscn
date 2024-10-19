@@ -29,27 +29,36 @@ modulate = Color(0.227451, 0.45098, 1, 1)
 visible = false
 position = Vector2(960, 540)
 
-[node name="Area2D" parent="." instance=ExtResource("3_dvm0i")]
+[node name="1" parent="." instance=ExtResource("3_dvm0i")]
+position = Vector2(325, 523.333)
+
+[node name="Area2D" parent="1" instance=ExtResource("6_1xkkq")]
+position = Vector2(276.667, -396.667)
+scale = Vector2(10.1481, 8.16677)
+DetectOnFront = false
+
+[node name="2" parent="." instance=ExtResource("3_dvm0i")]
 position = Vector2(836.667, 546.667)
-Front = null
-Back = null
 
-[node name="Area2D4" parent="Area2D" instance=ExtResource("6_1xkkq")]
-position = Vector2(-201.667, -280)
-rotation = -1.08058
+[node name="Area2D4" parent="2" instance=ExtResource("6_1xkkq")]
+position = Vector2(280, -396.667)
+rotation = -0.277931
+scale = Vector2(7.17686, 7.16543)
 
-[node name="Area2D2" parent="." instance=ExtResource("3_dvm0i")]
+[node name="Area2D" parent="2" instance=ExtResource("6_1xkkq")]
+position = Vector2(-148.334, -301.667)
+rotation = -0.80155
+scale = Vector2(7.22626, 7.64723)
+DetectOnFront = false
+
+[node name="3" parent="." instance=ExtResource("3_dvm0i")]
 position = Vector2(1510, 563.333)
-Front = null
-Back = null
 
-[node name="Area2D4" parent="Area2D2" instance=ExtResource("6_1xkkq")]
-position = Vector2(-995, -245)
-
-[node name="Area2D3" parent="." instance=ExtResource("3_dvm0i")]
-position = Vector2(358.333, 570)
-Front = null
-Back = null
+[node name="Area2D4" parent="3" instance=ExtResource("6_1xkkq")]
+position = Vector2(-285, -400)
+rotation = -0.000491455
+scale = Vector2(8.08303, 7.33932)
+AngleDetection = 180.0
 
 [node name="BottomPanel" parent="." instance=ExtResource("7_sn8wk")]
 position = Vector2(1.66667, 998.333)
