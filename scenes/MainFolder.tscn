@@ -1,10 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://c5kytv1srns3a"]
+[gd_scene load_steps=30 format=3 uid="uid://c5kytv1srns3a"]
 
-[ext_resource type="Texture2D" uid="uid://5jbtan4hldb3" path="res://assets/sprites/ClosedCarpet.png" id="1_ahfq8"]
 [ext_resource type="Script" path="res://scripts/CarpetPhysics.gd" id="2_5x3nb"]
 [ext_resource type="Texture2D" uid="uid://cq0gt2hi0urab" path="res://assets/sprites/BlankPaper.png" id="2_j28p5"]
-[ext_resource type="Texture2D" uid="uid://dukhrsniknfkd" path="res://assets/sprites/BackClosedCarpet.png" id="3_vs4pe"]
+[ext_resource type="Texture2D" uid="uid://cch3w1blqqi0p" path="res://assets/sprites/0. Menu/Menu_FolderEnd_front.png" id="3_847ss"]
 [ext_resource type="PackedScene" uid="uid://h0fepfx7wjl5" path="res://scenes/ButtonTag.tscn" id="5_8pl68"]
+[ext_resource type="Texture2D" uid="uid://bvh8qsy3kdep7" path="res://assets/sprites/0. Menu/Menu_FolderInlay_options.png" id="5_k0of8"]
+[ext_resource type="Texture2D" uid="uid://jpp1nvh5qbq" path="res://assets/sprites/0. Menu/Menu_FolderInlay_credits.png" id="6_hnspv"]
+[ext_resource type="Texture2D" uid="uid://ekcjeset7wyr" path="res://assets/sprites/0. Menu/Menu_FolderInlay_quit.png" id="7_xog4b"]
+[ext_resource type="Texture2D" uid="uid://bywaga7ur6yoq" path="res://assets/sprites/0. Menu/Menu_FolderCoverWithText_front.png" id="8_jybie"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pe3tx"]
 
@@ -23,79 +26,201 @@
 [sub_resource type="Animation" id="Animation_ytcp8"]
 length = 0.001
 step = 0.5
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale:x")
-tracks/0/interp = 1
+tracks/0/path = NodePath("FolderBack:visible")
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FolderBack:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("FolderFront:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-
-[sub_resource type="Animation" id="Animation_gwoyh"]
-resource_name = "flipping"
-step = 0.05
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.45, 0.55, 1)
-}
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("FolderBack:visible")
-tracks/1/interp = 1
+tracks/1/path = NodePath("FolderFront:visible")
+tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.45, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, false, true, true]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("FolderFront:visible")
-tracks/2/interp = 1
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.55, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FolderBack:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Start:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Settings:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Credits:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Quit:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gwoyh"]
+resource_name = "flipping"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FolderBack:visible")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FolderFront:visible")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.51, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(-1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FolderBack:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.51, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Start:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.51, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.8, 1), Vector2(0.8, 1), Vector2(-0.8, 1), Vector2(-0.8, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Settings:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.51, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.8, 1), Vector2(0.8, 1), Vector2(-0.8, 1), Vector2(-0.8, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Credits:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.51, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.8, 1), Vector2(0.8, 1), Vector2(-0.8, 1), Vector2(-0.8, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Quit:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.51, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.8, 1), Vector2(0.8, 1), Vector2(-0.8, 1), Vector2(-0.8, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f8kdm"]
@@ -106,6 +231,15 @@ _data = {
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4hg0l"]
 animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v7kmi"]
+animation = &"flipping"
+play_mode = 1
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_flnib"]
 animation = &"flipping"
@@ -130,27 +264,38 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"flip back"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sdcqi"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"speed flip back"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uupdj"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hwos0"]
 states/End/position = Vector2(874.667, 118.519)
 states/RESET/node = SubResource("AnimationNodeAnimation_4hg0l")
 states/RESET/position = Vector2(337.333, 118)
+"states/Speedy flipping back/node" = SubResource("AnimationNodeAnimation_v7kmi")
+"states/Speedy flipping back/position" = Vector2(336.888, 31.3333)
 states/Start/position = Vector2(197.333, 117.333)
 states/flipping/node = SubResource("AnimationNodeAnimation_4tyl5")
 states/flipping/position = Vector2(499.111, 62)
 "states/flipping back/node" = SubResource("AnimationNodeAnimation_flnib")
 "states/flipping back/position" = Vector2(498.815, 172.667)
-transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_v2c6m"), "RESET", "flipping", SubResource("AnimationNodeStateMachineTransition_13igh"), "flipping back", "RESET", SubResource("AnimationNodeStateMachineTransition_btnsy"), "flipping", "flipping back", SubResource("AnimationNodeStateMachineTransition_ma4vr")]
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_v2c6m"), "RESET", "flipping", SubResource("AnimationNodeStateMachineTransition_13igh"), "flipping back", "RESET", SubResource("AnimationNodeStateMachineTransition_btnsy"), "flipping", "flipping back", SubResource("AnimationNodeStateMachineTransition_ma4vr"), "flipping", "Speedy flipping back", SubResource("AnimationNodeStateMachineTransition_sdcqi"), "Speedy flipping back", "RESET", SubResource("AnimationNodeStateMachineTransition_uupdj")]
 
 [node name="MainFolder" type="Node2D"]
 script = ExtResource("2_5x3nb")
 
 [node name="Button" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -200.0
-offset_top = -282.0
-offset_right = 200.0
-offset_bottom = 282.0
-pivot_offset = Vector2(200, 282)
+offset_left = -285.0
+offset_top = -415.0
+offset_right = 300.0
+offset_bottom = 420.0
+pivot_offset = Vector2(285, 415)
 localize_numeral_system = false
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pe3tx")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_nh55c")
@@ -177,34 +322,44 @@ tree_root = SubResource("AnimationNodeStateMachine_hwos0")
 advance_expression_base_node = NodePath("../AnimationPlayer")
 parameters/conditions/flip = false
 "parameters/conditions/flip back" = false
+"parameters/conditions/speed flip back" = false
 
 [node name="FolderBack" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(-1, 1)
-texture = ExtResource("3_vs4pe")
-
-[node name="FolderFront" type="Sprite2D" parent="."]
-texture = ExtResource("1_ahfq8")
+position = Vector2(28, 0)
+texture = ExtResource("3_847ss")
 
 [node name="Start" parent="." instance=ExtResource("5_8pl68")]
-modulate = Color(0.392157, 1, 1, 1)
-position = Vector2(200, -75)
+position = Vector2(307, -215)
 rotation = 1.5708
 
 [node name="Settings" parent="." instance=ExtResource("5_8pl68")]
-modulate = Color(1, 0.478431, 1, 1)
-position = Vector2(200, 40)
+position = Vector2(307, -35)
 rotation = 1.5708
+texture = ExtResource("5_k0of8")
+
+[node name="Credits" parent="." instance=ExtResource("5_8pl68")]
+position = Vector2(307, 147)
+rotation = 1.5708
+texture = ExtResource("6_hnspv")
 
 [node name="Quit" parent="." instance=ExtResource("5_8pl68")]
-modulate = Color(1, 1, 0.494118, 1)
-position = Vector2(200, 155)
+position = Vector2(307, 327)
 rotation = 1.5708
+texture = ExtResource("7_xog4b")
+
+[node name="FolderFront" type="Sprite2D" parent="."]
+position = Vector2(28, 0)
+texture = ExtResource("8_jybie")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-rect = Rect2(-200, -282, 400, 564)
+rect = Rect2(-285, -415, 585, 835)
 
 [connection signal="button_down" from="Button" to="." method="_on_main_carpet_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_main_carpet_button_up"]
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="closingAnimation" from="Start" to="." method="_on_start_closing_animation"]
+[connection signal="closingAnimation" from="Settings" to="." method="_on_settings_closing_animation"]
+[connection signal="closingAnimation" from="Credits" to="." method="_on_credits_closing_animation"]
+[connection signal="closingAnimation" from="Quit" to="." method="_on_quit_closing_animation"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

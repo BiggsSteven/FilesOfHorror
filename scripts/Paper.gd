@@ -1,14 +1,14 @@
 extends Area2D
 
-@export var FrontTexture : Texture2D
-@export var BackTexture : Texture2D
+@export var FrontSprite : Sprite2D
+@export var BackSprite : Sprite2D
+@export var FrontVisible : bool = true
+@export var BackVisible : bool = true
 @onready var Paper : Area2D = $"."
 @onready var Animation_Tree : AnimationTree = $AnimationTree
 @onready var AreaDetection : CollisionShape2D = $CollisionShape2D
 @onready var ScreenNotifier : VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var DetectClicking : TextureButton = $TextureButton
-@onready var FrontSprite : Sprite2D = $Front
-@onready var BackSprite : Sprite2D = $Back
 
 var active = false
 var flipping = false
@@ -23,20 +23,22 @@ var rotation0 = 0.0
 var rotationMult = 0.0
 
 func _ready() -> void:
-	if FrontTexture != null && BackTexture != null:
-		var NewScale : Vector2 = FrontTexture.size / FrontSprite.texture.size
-		AreaDetection.scale = NewScale
-		ScreenNotifier.scale = NewScale
-		DetectClicking.scale = NewScale
-		FrontSprite.texture = FrontTexture
-		BackSprite.texture = BackTexture
-		BackTexture.scale = FrontTexture.size / BackTexture.size
+	if FrontSprite == null || BackSprite == null:
+		queue_free()
+		return
+	var NewScale = FrontSprite.get_rect().size * FrontSprite.scale
+	AreaDetection.scale = NewScale / AreaDetection.shape.get_rect().size
+	ScreenNotifier.scale = NewScale / ScreenNotifier.rect.size
+	DetectClicking.scale = NewScale / DetectClicking.size
+	BackSprite.scale = NewScale / BackSprite.get_rect().size
 
 func _process(delta: float) -> void:
 	var mouse_position = get_viewport().get_mouse_position()
 	var new_paper_mouse = mouse_position - Paper.get_global_position()
 	var new_paper_mouse_dir = new_paper_mouse.normalized()
 	var to_rotate = acos(paper_mouse_dir.dot(new_paper_mouse_dir))*sign(paper_mouse_dir.cross(new_paper_mouse_dir))
+	FrontSprite.visible = FrontVisible
+	BackSprite.visible = BackVisible
 	if flipping && front != newFront:
 	# Activation of animation of getting flipped
 		Animation_Tree.set("parameters/conditions/Flip",!newFront)

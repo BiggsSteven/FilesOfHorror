@@ -12,6 +12,9 @@ var snapped = false
 var snapChannel = 0
 
 func _process(delta: float) -> void:
+	var parentFront : bool
+	if ParentNode["front"] != null: parentFront = ParentNode["front"]
+	AreaNode.visible = DetectOnFront == parentFront
 	if activeSnapping:
 		if !ParentNode["active"] && !snapped:
 			ParentNode.global_position = newPosition

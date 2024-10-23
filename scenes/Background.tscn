@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://4101s4jkq1vd"]
+[gd_scene load_steps=3 format=3 uid="uid://4101s4jkq1vd"]
 
-[ext_resource type="Texture2D" uid="uid://b8jlsae2s0qxj" path="res://assets/sprites/Background.png" id="1_s7osk"]
+[ext_resource type="Texture2D" uid="uid://m2ebdckx8owu" path="res://assets/sprites/0. Menu/General_PlaceholderBackground.PNG" id="1_ylml1"]
+[ext_resource type="Script" path="res://scripts/background.gd" id="2_thnws"]
 
 [node name="Background" type="Sprite2D"]
 process_priority = 1
-modulate = Color(0.227451, 1, 1, 1)
+modulate = Color(0.556863, 0.462745, 0.882353, 1)
 position = Vector2(960, 540)
-texture = ExtResource("1_s7osk")
+texture = ExtResource("1_ylml1")
+script = ExtResource("2_thnws")

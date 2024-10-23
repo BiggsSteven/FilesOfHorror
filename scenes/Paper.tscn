@@ -1,57 +1,45 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6qldsxwcjjph"]
+[gd_scene load_steps=14 format=3 uid="uid://b6qldsxwcjjph"]
 
 [ext_resource type="Script" path="res://scripts/Paper.gd" id="1_rd3t0"]
-[ext_resource type="Texture2D" uid="uid://dnqjbwdkngb7k" path="res://assets/sprites/PlaceHolderPaperFront.PNG" id="2_07s57"]
-[ext_resource type="Texture2D" uid="uid://5rd1nw03c87v" path="res://assets/sprites/PlaceHolderPaperBack.PNG" id="3_o3ska"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6repw"]
 size = Vector2(570, 810)
 
 [sub_resource type="Animation" id="Animation_ohb7d"]
 resource_name = "Flipping"
-step = 0.05
-tracks/0/type = "bezier"
+step = 0.01
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale:x")
-tracks/0/interp = 1
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.45, 0.55, 1)
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(-1, 1)]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale:y")
-tracks/1/interp = 1
+tracks/1/path = NodePath(".:FrontVisible")
+tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Front:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.55, 1),
+"times": PackedFloat32Array(0, 0.5, 0.508915, 0.998915),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, false]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Back:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.45, 0.5, 1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:BackVisible")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.49, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, false, true, true]
@@ -59,47 +47,37 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_7dq1w"]
 length = 0.001
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale:x")
-tracks/0/interp = 1
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale:y")
-tracks/1/interp = 1
+tracks/1/path = NodePath(".:FrontVisible")
+tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Front:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Back:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:BackVisible")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -149,6 +127,7 @@ transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransitio
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_rd3t0")
+BackVisible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -169,6 +148,7 @@ offset_right = 285.0
 offset_bottom = 405.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(285, 405)
 mouse_filter = 1
 button_mask = 3
 ignore_texture_size = true
@@ -184,13 +164,6 @@ tree_root = SubResource("AnimationNodeStateMachine_qyf2q")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/Flip = false
 "parameters/conditions/Flip Back" = false
-
-[node name="Front" type="Sprite2D" parent="."]
-texture = ExtResource("2_07s57")
-
-[node name="Back" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("3_o3ska")
 
 [connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
