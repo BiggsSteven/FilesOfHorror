@@ -1,17 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://dn2lljkijhvpv"]
+[gd_scene load_steps=16 format=3 uid="uid://dn2lljkijhvpv"]
 
 [ext_resource type="PackedScene" uid="uid://4101s4jkq1vd" path="res://scenes/Background.tscn" id="1_u8jly"]
+[ext_resource type="Script" path="res://scripts/paper_desk.gd" id="1_wyf3t"]
 [ext_resource type="PackedScene" uid="uid://cotmjl4g4mkd" path="res://scenes/Folder.tscn" id="2_v1dyx"]
 [ext_resource type="PackedScene" uid="uid://b6qldsxwcjjph" path="res://scenes/Paper.tscn" id="3_dvm0i"]
 [ext_resource type="Texture2D" uid="uid://b6ikd4e5rp25j" path="res://assets/sprites/Chapters/Chapter1_Starsheet_back.png" id="5_mgtbd"]
 [ext_resource type="Texture2D" uid="uid://vcpdrrteyrfk" path="res://assets/sprites/Chapters/Chapter1_Starsheet_front.png" id="6_6477x"]
 [ext_resource type="Texture2D" uid="uid://dagblet4uhymi" path="res://assets/sprites/Chapters/Chapter1_Photograph_TheWatchers_back.png" id="7_c1vcn"]
+[ext_resource type="Texture2D" uid="uid://cfa5u2nyfjtfs" path="res://assets/sprites/Chapters/Chapter1_Sign_Light.png" id="7_ol5e2"]
 [ext_resource type="PackedScene" uid="uid://ci75jdjnghgv5" path="res://scenes/BottomPanel.tscn" id="7_sn8wk"]
 [ext_resource type="PackedScene" uid="uid://bvxu4gh31vgp0" path="res://scenes/DetectAlignment.tscn" id="7_ujamh"]
 [ext_resource type="Texture2D" uid="uid://8p7oi505i5jo" path="res://assets/sprites/Chapters/Chapter1_Photograph_TheWatchers_front.png" id="8_0icl7"]
+[ext_resource type="Texture2D" uid="uid://cld248b02gfhw" path="res://assets/sprites/Chapters/Chapter2_Photograph_TheChurch1_back.png" id="11_5sdby"]
+[ext_resource type="Texture2D" uid="uid://dcqdy0xos6fa0" path="res://assets/sprites/Chapters/Chapter2_Photograph_TheChurch2_back.png" id="12_10rnn"]
+[ext_resource type="Texture2D" uid="uid://dvdh35okfcy1w" path="res://assets/sprites/Chapters/Chapter2_Photograph_TheChurch1_front.png" id="13_60qco"]
+[ext_resource type="Texture2D" uid="uid://chhyhnn6ebh18" path="res://assets/sprites/Chapters/Chapter2_Photograph_TheChurch2_front.png" id="14_gt4be"]
 
 [node name="Node2D" type="Node2D"]
 scale = Vector2(0.6, 0.6)
+script = ExtResource("1_wyf3t")
 
 [node name="Background" parent="." instance=ExtResource("1_u8jly")]
 process_priority = 0
@@ -30,21 +37,27 @@ position = Vector2(960, 540)
 visible = false
 position = Vector2(1.66667, 998.333)
 
-[node name="2" parent="." node_paths=PackedStringArray("FrontSprite", "BackSprite") instance=ExtResource("3_dvm0i")]
+[node name="Starsheet" parent="." node_paths=PackedStringArray("FrontSprite", "BackSprite") instance=ExtResource("3_dvm0i")]
 position = Vector2(1256.67, 541.667)
 FrontSprite = NodePath("Front")
 BackSprite = NodePath("Back")
 
-[node name="Back" type="Sprite2D" parent="2"]
+[node name="Back" type="Sprite2D" parent="Starsheet"]
 texture = ExtResource("5_mgtbd")
 offset = Vector2(2, 3)
 flip_h = true
 
-[node name="Front" type="Sprite2D" parent="2"]
-visible = false
+[node name="Front" type="Sprite2D" parent="Starsheet"]
 texture = ExtResource("6_6477x")
 
-[node name="LightSigil" parent="2" instance=ExtResource("7_ujamh")]
+[node name="LightSign" type="Sprite2D" parent="Starsheet"]
+visible = false
+position = Vector2(143.333, -28.3334)
+rotation = 0.0203463
+texture = ExtResource("7_ol5e2")
+flip_h = true
+
+[node name="LightSigil" parent="Starsheet" instance=ExtResource("7_ujamh")]
 position = Vector2(113.333, -38.3334)
 rotation = -1.61606
 scale = Vector2(5.5583, 5.5583)
@@ -52,20 +65,41 @@ collision_layer = 0
 DetectOnFront = false
 AngleDetection = 20.0
 
-[node name="1" parent="." node_paths=PackedStringArray("FrontSprite", "BackSprite") instance=ExtResource("3_dvm0i")]
+[node name="Starlight Photograph" parent="." node_paths=PackedStringArray("FrontSprite", "BackSprite") instance=ExtResource("3_dvm0i")]
 position = Vector2(1253.33, 331.667)
 FrontSprite = NodePath("Front")
 BackSprite = NodePath("Back")
 
-[node name="Back" type="Sprite2D" parent="1"]
+[node name="Back" type="Sprite2D" parent="Starlight Photograph"]
 texture = ExtResource("7_c1vcn")
 flip_h = true
 
-[node name="Front" type="Sprite2D" parent="1"]
+[node name="Front" type="Sprite2D" parent="Starlight Photograph"]
 texture = ExtResource("8_0icl7")
 
-[node name="Starlight" parent="1" instance=ExtResource("7_ujamh")]
+[node name="Starlight" parent="Starlight Photograph" instance=ExtResource("7_ujamh")]
 position = Vector2(13.3333, -40)
 rotation = -0.898271
 scale = Vector2(3.96719, 3.96719)
 collision_mask = 0
+
+[node name="Church" parent="." node_paths=PackedStringArray("FrontSprite", "BackSprite") instance=ExtResource("3_dvm0i")]
+position = Vector2(1260, 696.667)
+FrontSprite = NodePath("Front")
+BackSprite = NodePath("Back")
+
+[node name="Back" type="Sprite2D" parent="Church"]
+texture = ExtResource("11_5sdby")
+flip_h = true
+
+[node name="WithLight" type="Sprite2D" parent="Church/Back"]
+visible = false
+texture = ExtResource("12_10rnn")
+flip_h = true
+
+[node name="Front" type="Sprite2D" parent="Church"]
+texture = ExtResource("13_60qco")
+
+[node name="WithLight" type="Sprite2D" parent="Church/Front"]
+visible = false
+texture = ExtResource("14_gt4be")

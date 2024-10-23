@@ -134,7 +134,7 @@ visible = false
 shape = SubResource("RectangleShape2D_6repw")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-rect = Rect2(-285, -405, 570, 810)
+rect = Rect2(-50, -50, 100, 100)
 
 [node name="TextureButton" type="TextureButton" parent="."]
 anchors_preset = 8

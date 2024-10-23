@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 			ParentNode.global_position = newPosition
 			ParentNode.global_rotation = newRotation
 			snapped = true
-			GlobalScreenChanger.callSnappingEvent(snapChannel)
+			ParentNode.get_parent().callSnappingEvent(snapChannel)
 			print("Snapped")
 		if ParentNode["active"] && snapped:
 			snapped = false
