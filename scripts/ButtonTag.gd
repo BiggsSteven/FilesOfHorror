@@ -22,8 +22,9 @@ func _process(delta: float) -> void:
 		animation_tree["parameters/conditions/Show"] = true
 		animation_tree["parameters/conditions/UnShow"] = false
 		animation_tree["parameters/conditions/Disapear"] = true
-		emit_signal("closingAnimation")
 		otherClosing = true
+		emit_signal("closingAnimation")
+		Manager.soundToPlay("PageFlip2")
 	if !Closing && otherClosing:
 		animation_tree["parameters/conditions/Show"] = false
 		animation_tree["parameters/conditions/UnShow"] = true
@@ -41,4 +42,4 @@ func _on_button_button_down() -> void:
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Disapear":
-		GlobalScreenChanger.callChangeScene($".".name)
+		Manager.callChangeScene($".".name)

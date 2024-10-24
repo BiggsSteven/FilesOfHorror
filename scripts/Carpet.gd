@@ -13,6 +13,9 @@ var paper_mouse_dir = Vector2(0, 0)
 var rotation0 = 0.0
 var rotationMult = 0.0
 
+func _ready() -> void:
+	Manager.soundToPlay("PageFlip3")
+
 func _process(_delta):
 	var mouse_position = get_viewport().get_mouse_position()
 	var new_paper_mouse = mouse_position - mainfolder.get_global_position()
@@ -20,9 +23,10 @@ func _process(_delta):
 	var to_rotate = acos(paper_mouse_dir.dot(new_paper_mouse_dir))*sign(paper_mouse_dir.cross(new_paper_mouse_dir))
 	if flipping:
 	# Activation of animation of getting flipped
-		animation_tree["parameters/conditions/Flip"] = front
-		animation_tree["parameters/conditions/Flip Back"] = !front
+		animation_tree["parameters/conditions/Flip"] = !front
+		animation_tree["parameters/conditions/Flip Back"] = front
 		flipping = false
+		Manager.soundToPlay("PageFlip4")
 	if active:	
 	# Generic dragging with mouse
 		mouse_paper = mouse_paper.rotated(to_rotate * rotationMult)
@@ -43,6 +47,7 @@ func _on_button_button_down() -> void:
 		rotationMult = 2 * mouse_paper.length() / size.length()
 		rotationMult = 2 * rotationMult * rotationMult
 		active = true
+		Manager.soundToPlay("PageFlip5")
 	else:
 		flipping = true
 		front = !front

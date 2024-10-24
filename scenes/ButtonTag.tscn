@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://h0fepfx7wjl5"]
 
 [ext_resource type="Script" path="res://scripts/ButtonTag.gd" id="1_361n7"]
-[ext_resource type="Texture2D" uid="uid://bw8cy7g52fvvi" path="res://assets/sprites/MainButtonTag.png" id="1_gaj6r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/MainButtonTag.png" id="1_gaj6r"]
 [ext_resource type="Texture2D" uid="uid://byd48314l2v7m" path="res://assets/sprites/0. Menu/Menu_FolderInlay_start.png" id="3_f5vje"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4kkea"]
@@ -124,8 +124,14 @@ _data = {
 "Show": SubResource("Animation_v6uqv")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_43avo"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e56sp"]
+resource_name = "Disapear"
 animation = &"Disapear"
+use_custom_timeline = true
+timeline_length = 2.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dm52w"]
 animation = &"Hide"
@@ -139,6 +145,11 @@ animation = &"Show"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k61dm"]
 animation = &"Show"
 play_mode = 1
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ub6iq"]
 advance_mode = 2
@@ -156,18 +167,18 @@ advance_condition = &"UnShow"
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bh5qt"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"Disapear"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8w4e3"]
 advance_mode = 2
 advance_condition = &"Hide"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u57gi"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"Disapear"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5lce1"]
-states/Disapear/node = SubResource("AnimationNodeAnimation_43avo")
-states/Disapear/position = Vector2(770.421, 44.2222)
+states/Disapear/node = SubResource("AnimationNodeAnimation_e56sp")
+states/Disapear/position = Vector2(776.789, 51.3553)
 states/End/position = Vector2(900, 100.296)
 states/Hide/node = SubResource("AnimationNodeAnimation_dm52w")
 states/Hide/position = Vector2(769.483, 103.728)
@@ -177,11 +188,10 @@ states/Show/node = SubResource("AnimationNodeAnimation_5lxe6")
 states/Show/position = Vector2(518.667, 50)
 "states/Un Show/node" = SubResource("AnimationNodeAnimation_k61dm")
 "states/Un Show/position" = Vector2(519.556, 147.333)
-transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ub6iq"), "RESET", "Show", SubResource("AnimationNodeStateMachineTransition_t8kwu"), "Show", "Un Show", SubResource("AnimationNodeStateMachineTransition_xe4dg"), "Un Show", "RESET", SubResource("AnimationNodeStateMachineTransition_mf6s1"), "Show", "Disapear", SubResource("AnimationNodeStateMachineTransition_bh5qt"), "RESET", "Hide", SubResource("AnimationNodeStateMachineTransition_8w4e3")]
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ub6iq"), "RESET", "Show", SubResource("AnimationNodeStateMachineTransition_t8kwu"), "Show", "Un Show", SubResource("AnimationNodeStateMachineTransition_xe4dg"), "Un Show", "RESET", SubResource("AnimationNodeStateMachineTransition_mf6s1"), "RESET", "Hide", SubResource("AnimationNodeStateMachineTransition_8w4e3"), "Show", "Disapear", SubResource("AnimationNodeStateMachineTransition_u57gi")]
 graph_offset = Vector2(153.764, 0)
 
 [node name="ButtonTag" type="Node2D"]
-scale = Vector2(0.8, 1)
 script = ExtResource("1_361n7")
 texture = ExtResource("3_f5vje")
 

@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctkynq7wavn0g"]
+
+[ext_resource type="Script" path="res://scripts/Global_ScreenChanger.gd" id="1_2fuv1"]
+[ext_resource type="AudioStream" uid="uid://dey7lph4p3k7t" path="res://assets/sfx/bell-222490.mp3" id="2_cgaq5"]
+[ext_resource type="Script" path="res://scripts/soundPlayer.gd" id="3_cycsk"]
+[ext_resource type="AudioStream" uid="uid://4axycxdwhas2" path="res://assets/sfx/briefcase-lock-5.mp3" id="3_oiq88"]
+[ext_resource type="AudioStream" uid="uid://cqf10l00843su" path="res://assets/sfx/briefcase-lock-6.mp3" id="4_p8pky"]
+[ext_resource type="AudioStream" uid="uid://d0632yu5ax1np" path="res://assets/sfx/heartbeat-05.mp3" id="5_18o1y"]
+[ext_resource type="AudioStream" uid="uid://c0eyqgf1mfv25" path="res://assets/sfx/heartbeat-speeding-up-01.mp3" id="6_5bldh"]
+[ext_resource type="AudioStream" uid="uid://dde3qvux4y0tw" path="res://assets/sfx/page-flip-01a.mp3" id="7_g4hkf"]
+[ext_resource type="AudioStream" uid="uid://c2275677gllv5" path="res://assets/sfx/page-flip-02.mp3" id="8_5p6ao"]
+[ext_resource type="AudioStream" uid="uid://davsm0t3kovho" path="res://assets/sfx/page-flip-9.mp3" id="9_75j2x"]
+[ext_resource type="AudioStream" uid="uid://c0y84mm2mufvn" path="res://assets/sfx/page-flip-10.mp3" id="10_gr1dq"]
+[ext_resource type="AudioStream" uid="uid://bjdnlgv157e1i" path="res://assets/sfx/writing-signature-1.mp3" id="11_vdcu7"]
+[ext_resource type="AudioStream" uid="uid://byt277tdoxebe" path="res://assets/music/The Dark Forest.mp3" id="12_tet1b"]
+
+[node name="Manager" type="Node"]
+script = ExtResource("1_2fuv1")
+
+[node name="BellRing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cgaq5")
+volume_db = 10.0
+script = ExtResource("3_cycsk")
+pitch_min = 0.5
+pitch_max = 1.5
+retrigger_time = 2.0
+
+[node name="TurnOnLightSigil" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_oiq88")
+
+[node name="TurnOffLightSigil" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p8pky")
+
+[node name="NormalHearthBeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_18o1y")
+volume_db = 7.0
+
+[node name="SpeedyHearthBeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5bldh")
+volume_db = 5.0
+
+[node name="PageFlip1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_g4hkf")
+script = ExtResource("3_cycsk")
+pitch_max = 2.0
+retrigger_time = 0.5
+
+[node name="PageFlip2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_5p6ao")
+script = ExtResource("3_cycsk")
+pitch_max = 2.0
+retrigger_time = 0.3
+
+[node name="PageFlip3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_75j2x")
+script = ExtResource("3_cycsk")
+pitch_max = 2.0
+retrigger_time = 0.5
+
+[node name="PageFlip4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_gr1dq")
+script = ExtResource("3_cycsk")
+pitch_max = 2.0
+retrigger_time = 0.5
+
+[node name="PageFlip5" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_gr1dq")
+pitch_scale = 0.95
+script = ExtResource("3_cycsk")
+pitch_max = 2.0
+retrigger_time = 0.5
+
+[node name="Writing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_vdcu7")
+volume_db = 6.0
+script = ExtResource("3_cycsk")
+pitch_max = 2.0
+
+[node name="Music-TheDarkForest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_tet1b")
+volume_db = -2.0
+autoplay = true
+
+[connection signal="finished" from="Music-TheDarkForest" to="." method="_on_music_the_dark_forest_finished"]

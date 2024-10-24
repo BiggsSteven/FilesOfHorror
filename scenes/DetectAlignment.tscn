@@ -18,6 +18,7 @@ z_index = 2
 shape = SubResource("CircleShape2D_rveqf")
 
 [node name="DirectionReference" type="Line2D" parent="."]
+visible = false
 points = PackedVector2Array(0, 0, 2.5, 0, 2.5, -2, 4.5, 0, 2.5, 2, 2.5, 0)
 width = 1.0
 default_color = Color(0, 0, 0, 1)

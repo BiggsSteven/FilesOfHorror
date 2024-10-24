@@ -11,14 +11,15 @@ config_version=5
 [application]
 
 config/name="Files of Horror"
+config/version="1.0"
 run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/image="res://assets/sprites/WidescreenCHJ3SplashScreen.png"
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [autoload]
 
-GlobalScreenChanger="*res://scripts/Global_ScreenChanger.gd"
+Manager="*res://scenes/Manager.tscn"
 
 [display]
 

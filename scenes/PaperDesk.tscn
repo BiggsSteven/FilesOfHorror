@@ -1,20 +1,245 @@
-[gd_scene load_steps=16 format=3 uid="uid://dn2lljkijhvpv"]
+[gd_scene load_steps=35 format=3 uid="uid://dn2lljkijhvpv"]
 
 [ext_resource type="PackedScene" uid="uid://4101s4jkq1vd" path="res://scenes/Background.tscn" id="1_u8jly"]
 [ext_resource type="Script" path="res://scripts/paper_desk.gd" id="1_wyf3t"]
 [ext_resource type="PackedScene" uid="uid://cotmjl4g4mkd" path="res://scenes/Folder.tscn" id="2_v1dyx"]
 [ext_resource type="PackedScene" uid="uid://b6qldsxwcjjph" path="res://scenes/Paper.tscn" id="3_dvm0i"]
+[ext_resource type="PackedScene" uid="uid://h0fepfx7wjl5" path="res://scenes/ButtonTag.tscn" id="4_2powr"]
+[ext_resource type="Texture2D" uid="uid://cl13fisf8l25f" path="res://assets/sprites/0. Menu/Menu_FolderInlay_back.png" id="5_bm1x7"]
 [ext_resource type="Texture2D" uid="uid://b6ikd4e5rp25j" path="res://assets/sprites/Chapters/Chapter1_Starsheet_back.png" id="5_mgtbd"]
+[ext_resource type="Texture2D" uid="uid://ekcjeset7wyr" path="res://assets/sprites/0. Menu/Menu_FolderInlay_quit.png" id="5_qmjq5"]
 [ext_resource type="Texture2D" uid="uid://vcpdrrteyrfk" path="res://assets/sprites/Chapters/Chapter1_Starsheet_front.png" id="6_6477x"]
+[ext_resource type="Texture2D" uid="uid://byd48314l2v7m" path="res://assets/sprites/0. Menu/Menu_FolderInlay_start.png" id="6_v5r3d"]
 [ext_resource type="Texture2D" uid="uid://dagblet4uhymi" path="res://assets/sprites/Chapters/Chapter1_Photograph_TheWatchers_back.png" id="7_c1vcn"]
+[ext_resource type="Texture2D" uid="uid://jpp1nvh5qbq" path="res://assets/sprites/0. Menu/Menu_FolderInlay_credits.png" id="7_gh1j4"]
 [ext_resource type="Texture2D" uid="uid://cfa5u2nyfjtfs" path="res://assets/sprites/Chapters/Chapter1_Sign_Light.png" id="7_ol5e2"]
-[ext_resource type="PackedScene" uid="uid://ci75jdjnghgv5" path="res://scenes/BottomPanel.tscn" id="7_sn8wk"]
 [ext_resource type="PackedScene" uid="uid://bvxu4gh31vgp0" path="res://scenes/DetectAlignment.tscn" id="7_ujamh"]
 [ext_resource type="Texture2D" uid="uid://8p7oi505i5jo" path="res://assets/sprites/Chapters/Chapter1_Photograph_TheWatchers_front.png" id="8_0icl7"]
 [ext_resource type="Texture2D" uid="uid://cld248b02gfhw" path="res://assets/sprites/Chapters/Chapter2_Photograph_TheChurch1_back.png" id="11_5sdby"]
 [ext_resource type="Texture2D" uid="uid://dcqdy0xos6fa0" path="res://assets/sprites/Chapters/Chapter2_Photograph_TheChurch2_back.png" id="12_10rnn"]
+[ext_resource type="Script" path="res://scripts/make_bitmap.gd" id="12_it503"]
 [ext_resource type="Texture2D" uid="uid://dvdh35okfcy1w" path="res://assets/sprites/Chapters/Chapter2_Photograph_TheChurch1_front.png" id="13_60qco"]
 [ext_resource type="Texture2D" uid="uid://chhyhnn6ebh18" path="res://assets/sprites/Chapters/Chapter2_Photograph_TheChurch2_front.png" id="14_gt4be"]
+[ext_resource type="Texture2D" uid="uid://c1tu7rym5jb4b" path="res://assets/sprites/Chapters/Chapter2_Detect_Bell.png" id="21_yqjlt"]
+[ext_resource type="Texture2D" uid="uid://cxed7im72m16o" path="res://assets/sprites/Chapters/Chapter2_Detect_Light.png" id="22_no15y"]
+
+[sub_resource type="Animation" id="Animation_cfsb8"]
+resource_name = "Closing"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartTag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(930, 440), Vector2(930, 440), Vector2(1097, 440)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StartTag:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.00305027, 0.69695, 0.79695, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CreditsTag:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(930, 628), Vector2(930, 628), Vector2(1097, 628)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CreditsTag:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8, 1.00305),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("QuitTag:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(930, 814), Vector2(930, 814), Vector2(1097, 814)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("QuitTag:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8, 1.00305),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_4xfi4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartTag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(930, 440)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StartTag:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CreditsTag:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(930, 628)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CreditsTag:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("QuitTag:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(930, 814)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("QuitTag:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Menu:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1780, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lisf0"]
+resource_name = "start"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1780, -200), Vector2(1780, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ajdnw"]
+_data = {
+"Closing": SubResource("Animation_cfsb8"),
+"RESET": SubResource("Animation_4xfi4"),
+"start": SubResource("Animation_lisf0")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o8yu8"]
+animation = &"Closing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7o7yv"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y832t"]
+animation = &"start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ud25u"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_twvwk"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yeeet"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"Closing"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gnigb"]
+states/Closing/node = SubResource("AnimationNodeAnimation_o8yu8")
+states/Closing/position = Vector2(676, 100.222)
+states/RESET/node = SubResource("AnimationNodeAnimation_7o7yv")
+states/RESET/position = Vector2(493.333, 100.074)
+states/start/node = SubResource("AnimationNodeAnimation_y832t")
+states/start/position = Vector2(340, 100.074)
+transitions = ["Start", "start", SubResource("AnimationNodeStateMachineTransition_ud25u"), "start", "RESET", SubResource("AnimationNodeStateMachineTransition_twvwk"), "RESET", "Closing", SubResource("AnimationNodeStateMachineTransition_yeeet")]
+
+[sub_resource type="BitMap" id="BitMap_wrvu0"]
 
 [node name="Node2D" type="Node2D"]
 scale = Vector2(0.6, 0.6)
@@ -22,20 +247,46 @@ script = ExtResource("1_wyf3t")
 
 [node name="Background" parent="." instance=ExtResource("1_u8jly")]
 process_priority = 0
-modulate = Color(0.747016, 0.823973, 0.91585, 1)
+modulate = Color(0.232212, 0.496702, 0.843892, 1)
 TransitionColorEnd = Color(0.745098, 0.823529, 0.917647, 1)
 TransitionSeconds = 10.0
 
-[node name="Node2D2" parent="." instance=ExtResource("2_v1dyx")]
+[node name="Folder" parent="." instance=ExtResource("2_v1dyx")]
 position = Vector2(960, 540)
 
-[node name="Node2D" parent="." instance=ExtResource("2_v1dyx")]
-visible = false
-position = Vector2(960, 540)
+[node name="Menu" parent="." instance=ExtResource("4_2powr")]
+position = Vector2(1780, 0)
+rotation = -3.14159
+scale = Vector2(1, 1.25)
+texture = ExtResource("5_bm1x7")
 
-[node name="BottomPanel" parent="." instance=ExtResource("7_sn8wk")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ajdnw")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_gnigb")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/Closing = false
+
+[node name="StartTag" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(1.66667, 998.333)
+position = Vector2(930, 440)
+scale = Vector2(1, 0.8)
+texture = ExtResource("6_v5r3d")
+
+[node name="CreditsTag" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(930, 628)
+scale = Vector2(1, 0.8)
+texture = ExtResource("7_gh1j4")
+
+[node name="QuitTag" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(930, 814)
+scale = Vector2(1, 0.8)
+texture = ExtResource("5_qmjq5")
 
 [node name="Starsheet" parent="." node_paths=PackedStringArray("FrontSprite", "BackSprite") instance=ExtResource("3_dvm0i")]
 position = Vector2(1256.67, 541.667)
@@ -47,15 +298,22 @@ texture = ExtResource("5_mgtbd")
 offset = Vector2(2, 3)
 flip_h = true
 
+[node name="LightSign" type="TextureButton" parent="Starsheet/Back"]
+process_priority = -1
+visible = false
+offset_left = 21.6632
+offset_top = -146.667
+offset_right = 268.663
+offset_bottom = 88.333
+rotation = 0.0203463
+toggle_mode = true
+texture_normal = ExtResource("7_ol5e2")
+texture_click_mask = SubResource("BitMap_wrvu0")
+flip_h = true
+script = ExtResource("12_it503")
+
 [node name="Front" type="Sprite2D" parent="Starsheet"]
 texture = ExtResource("6_6477x")
-
-[node name="LightSign" type="Sprite2D" parent="Starsheet"]
-visible = false
-position = Vector2(143.333, -28.3334)
-rotation = 0.0203463
-texture = ExtResource("7_ol5e2")
-flip_h = true
 
 [node name="LightSigil" parent="Starsheet" instance=ExtResource("7_ujamh")]
 position = Vector2(113.333, -38.3334)
@@ -103,3 +361,28 @@ texture = ExtResource("13_60qco")
 [node name="WithLight" type="Sprite2D" parent="Church/Front"]
 visible = false
 texture = ExtResource("14_gt4be")
+
+[node name="DetectBell" type="TextureButton" parent="Church/Front"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = -103.0
+offset_top = -162.0
+offset_right = 103.0
+offset_bottom = 162.0
+texture_normal = ExtResource("21_yqjlt")
+script = ExtResource("12_it503")
+
+[node name="DetectLight" type="TextureButton" parent="Church/Front"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = -103.0
+offset_top = -162.0
+offset_right = 103.0
+offset_bottom = 162.0
+texture_normal = ExtResource("22_no15y")
+script = ExtResource("12_it503")
+
+[connection signal="closingAnimation" from="Menu" to="." method="_on_menu_closing_animation"]
+[connection signal="button_down" from="Starsheet/Back/LightSign" to="." method="_on_light_sign_button_down"]
+[connection signal="button_down" from="Church/Front/DetectBell" to="." method="_on_detect_bell_button_down"]
+[connection signal="button_down" from="Church/Front/DetectLight" to="." method="_on_detect_light_button_down"]

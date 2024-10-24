@@ -9,3 +9,9 @@ func _process(delta: float) -> void:
 	if TransitionedTime < TransitionSeconds:
 		TransitionedTime += delta
 	modulate = lerp(TransitionColorStart,TransitionColorEnd,TransitionedTime/TransitionSeconds)
+
+func newTransition(to: Color, seconds: float) -> void:
+	TransitionColorStart = TransitionColorEnd
+	TransitionColorEnd = to
+	TransitionSeconds = seconds
+	TransitionedTime = 0

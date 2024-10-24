@@ -45,9 +45,10 @@ func _process(_delta):
 	
 	if flipping && !alignToExit:
 	# Activation of animation of getting flipped
-		animation_tree["parameters/conditions/flip"] = front
-		animation_tree["parameters/conditions/flip back"] = !front
+		animation_tree["parameters/conditions/flip"] = !front
+		animation_tree["parameters/conditions/flip back"] = front
 		flipping = false
+		Manager.soundToPlay("PageFlip4")
 	if active && !alignToExit:	
 	# Generic dragging with mouse
 		mouse_paper = mouse_paper.rotated(to_rotate * rotationMult)
@@ -80,6 +81,7 @@ func _on_main_carpet_button_down() -> void:
 		rotationMult = 2 * mouse_paper.length() / size.length()
 		rotationMult = 2 * rotationMult * rotationMult
 		active = true
+		Manager.soundToPlay("PageFlip5")
 	else:
 		flipping = true
 		front = !front
@@ -98,33 +100,36 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 
 
 func _on_start_closing_animation() -> void:
-	$Settings.otherClosing = true
+	#$Settings.otherClosing = true
 	$Credits.otherClosing = true
 	$Quit.otherClosing = true
 	alignToExit = true
 	Center = centerLocation / 2 + Vector2(283*0.6,0)
 	aligning = Center - mainfolder.get_global_position()
 
-func _on_settings_closing_animation() -> void:
-	$Start.otherClosing = true
-	$Credits.otherClosing = true
-	$Quit.otherClosing = true
-	alignToExit = true
-	Center = centerLocation / 2 + Vector2(283*0.6,0)
-	aligning = Center - mainfolder.get_global_position()
+#func _on_settings_closing_animation() -> void:
+#	$Start.otherClosing = true
+#	$Credits.otherClosing = true
+#	$Quit.otherClosing = true
+#	alignToExit = true
+#	Center = centerLocation / 2 + Vector2(283*0.6,0)
+#	aligning = Center - mainfolder.get_global_position()
 
 func _on_credits_closing_animation() -> void:
-	$Start.otherClosing = true
-	$Settings.otherClosing = true
-	$Quit.otherClosing = true
+	$Credits.animation_tree["parameters/conditions/Disapear"] = false
+	$Credits.PastInside = !$Credits.PastInside
+	$Credits.Closing = false
+	$Credits.otherClosing = false
+	flipping = true
+	front = !front
 	alignToExit = true
-	Center = centerLocation / 2 + Vector2(283*0.6,0)
+	Center = centerLocation / 2
 	aligning = Center - mainfolder.get_global_position()
 
 func _on_quit_closing_animation() -> void:
 	$Start.otherClosing = true
 	$Credits.otherClosing = true
-	$Settings.otherClosing = true
+	#$Settings.otherClosing = true
 	alignToExit = true
 	Center = centerLocation / 2
 	aligning = Center - mainfolder.get_global_position()

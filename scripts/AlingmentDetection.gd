@@ -9,6 +9,7 @@ var newPosition : Vector2
 var newRotation : float
 var activeSnapping = false
 var snapped = false
+var justUnsnapped = false
 var snapChannel = 0
 
 func _process(delta: float) -> void:
@@ -20,9 +21,10 @@ func _process(delta: float) -> void:
 			ParentNode.global_position = newPosition
 			ParentNode.global_rotation = newRotation
 			snapped = true
-			ParentNode.get_parent().callSnappingEvent(snapChannel)
-			print("Snapped")
+			if !justUnsnapped:
+				ParentNode.get_parent().callSnappingEvent(snapChannel)
 		if ParentNode["active"] && snapped:
+			justUnsnapped = true
 			snapped = false
 
 func _on_area_entered(area: Area2D) -> void:
@@ -33,7 +35,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if ParentNode["flipping"] != null: parentFlipping = ParentNode["flipping"]
 	if ParentNode["front"] != null: parentFront = ParentNode["front"]
 	if parentActive && !parentFlipping && parentFront == DetectOnFront:
-		print("Snapping Active")
 		if deg_to_rad(AngleDetection)/2 >= abs(AreaNode.global_rotation - area.global_rotation):
 			var posDif : Vector2 = AreaNode.global_position - ParentNode.global_position
 			var angleDif : float = - AreaNode.global_rotation + area.global_rotation
@@ -44,7 +45,9 @@ func _on_area_entered(area: Area2D) -> void:
 			newRotation = ParentNode.global_rotation + angleDif
 			snapChannel = AreaNode.collision_mask
 			activeSnapping = true
-			print("Detected Snapping")
 
 func _on_area_exited(area: Area2D) -> void:
 	activeSnapping = false
+	if justUnsnapped:
+		ParentNode.get_parent().callSnappingEvent(snapChannel)
+		justUnsnapped = false

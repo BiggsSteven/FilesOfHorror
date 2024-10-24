@@ -22,6 +22,13 @@ var mouse_velocity = Vector2(0, 0)
 var rotation0 = 0.0
 var rotationMult = 0.0
 
+var inTransition = false
+var positionTransition:Vector2
+var rotationTransition:float
+var timeTransition:float
+var position0Transition:Vector2
+var rotation0Transition:float
+
 func _ready() -> void:
 	if FrontSprite == null || BackSprite == null:
 		queue_free()
@@ -33,6 +40,14 @@ func _ready() -> void:
 	BackSprite.scale = NewScale / BackSprite.get_rect().size
 
 func _process(delta: float) -> void:
+	if inTransition:
+		global_position = lerp(positionTransition,position0Transition,timeTransition)
+		global_rotation = lerp(rotationTransition,rotation0Transition,timeTransition)
+		timeTransition -= delta
+		if timeTransition <= 0:
+			global_position = positionTransition
+			global_rotation = rotationTransition
+			inTransition = false
 	var mouse_position = get_viewport().get_mouse_position()
 	var new_paper_mouse = mouse_position - Paper.get_global_position()
 	var new_paper_mouse_dir = new_paper_mouse.normalized()
@@ -43,6 +58,7 @@ func _process(delta: float) -> void:
 	# Activation of animation of getting flipped
 		Animation_Tree.set("parameters/conditions/Flip",!newFront)
 		Animation_Tree.set("parameters/conditions/Flip Back",newFront)
+		Manager.soundToPlay("PageFlip1")
 		front = newFront
 	if active:	
 	# Generic dragging with mouse
@@ -65,10 +81,11 @@ func _on_texture_button_button_down() -> void:
 		mouse_paper = Paper.get_global_position() - get_viewport().get_mouse_position()
 		paper_mouse_dir = -mouse_paper
 		paper_mouse_dir = paper_mouse_dir.normalized()
-		var size = DetectClicking.size
+		var size = DetectClicking.size * DetectClicking.scale
 		rotationMult = 2 * mouse_paper.length() / size.length()
 		rotationMult = 2 * rotationMult * rotationMult
 		active = true
+		Manager.soundToPlay("PageFlip2")
 	elif !flipping && Input.get_mouse_button_mask() == 2:
 		newFront = !front
 		flipping = true
@@ -89,6 +106,17 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	outside = false
+
+func transitionMoveTo(_position:Vector2,_rotation:float = 0.0,time:float=1.0) -> void:
+	inTransition = true
+	positionTransition = _position
+	rotationTransition = _rotation
+	timeTransition = time
+	position0Transition = global_position
+	rotation0Transition = global_rotation
+	if scale.x <= 0:
+		rotation0Transition = rotation0Transition - PI*sign(rotation0Transition)
+	
 
 func _on_mouse_shape_entered(shape_idx: int) -> void:
 	# Tried to make paper move when mouse pass over them
